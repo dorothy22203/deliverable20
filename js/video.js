@@ -3,21 +3,16 @@ var video;
 window.addEventListener("load", function() {
 	console.log("Good job opening the window")
 	video = document.querySelector("#player1"); 
-    video.autoplay = false; 
-    video.loop = false; 
-	updateVolumeText();
-
-	// Function to update volume text
-	function updateVolumeText() {
-		document.getElementById('volume').textContent = (video.volume * 100).toFixed(0) + '%';
-	}
+	video.autoplay = false; 
+	video.loop = false; 
 
 	// Play button
 	document.querySelector("#play").addEventListener("click", function() {
 		console.log("Play Video");
 		console.log("Video volume before play is: " + (video.volume * 100).toFixed(0) + '%');
 		video.play();
-		updateVolumeText();
+		document.getElementById("volume").textContent = (video.volume * 100).toFixed(0) + '%';
+		console.log("Volume is: " + video.volume * 100 + "%");
 	});
   
 	 // Pause video button  
@@ -59,7 +54,8 @@ window.addEventListener("load", function() {
 	 // Volume slider  
 	 document.querySelector("#slider").addEventListener("change", function() {
 		video.volume = this.value / 100;
-		updateVolumeText();
+		document.getElementById("volume").textContent = (video.volume * 100).toFixed(0) + '%';
+		console.log("Volume is: " + video.volume * 100 + "%");
 	 });
   
 	 // Apply old school style to the video
@@ -72,3 +68,4 @@ window.addEventListener("load", function() {
 		video.classList.remove("oldSchool");
 	 });
 });
+
