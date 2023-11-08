@@ -34,9 +34,10 @@ window.addEventListener("load", function() {
   
 	 // Skip ahead button  
 	 document.querySelector("#skip").addEventListener("click", function() {
-		if(video.currentTime + 10 > video.duration) {
+		if (video.currentTime + 10 > video.duration) {
 		   video.currentTime = 0; 
-		} else {
+		} 
+		else {
 		   video.currentTime += 10; 
 		}
 		console.log("Current location is " + video.currentTime);
@@ -44,10 +45,11 @@ window.addEventListener("load", function() {
   
 	 // Mute button  
 	 document.querySelector("#mute").addEventListener("click", function() {
-		if(video.muted) {
+		if (video.muted) {
 		   video.muted = false;
 		   this.innerHTML = "Mute";
-		} else {
+		} 
+		else {
 		   video.muted = true;
 		   this.innerHTML = "Unmute";
 		}
