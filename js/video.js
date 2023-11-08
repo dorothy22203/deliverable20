@@ -5,14 +5,20 @@ window.addEventListener("load", function() {
 	video = document.querySelector("#player1"); 
     video.autoplay = false; 
     video.loop = false; 
-    document.getElementById("volume").innerHTML = video.volume * 100 + "%";
+	updateVolumeText();
 
-	// Play video button  
+	// Function to update volume text
+	function updateVolumeText() {
+		document.getElementById('volume').textContent = (video.volume * 100).toFixed(0) + '%';
+	}
+
+	// Play button
 	document.querySelector("#play").addEventListener("click", function() {
 		console.log("Play Video");
+		console.log("Video volume before play is: " + (video.volume * 100).toFixed(0) + '%');
 		video.play();
-		document.getElementById("volume").innerHTML = video.volume * 100 + "%";
-	 });
+		updateVolumeText();
+	});
   
 	 // Pause video button  
 	 document.querySelector("#pause").addEventListener("click", function() {
@@ -43,23 +49,17 @@ window.addEventListener("load", function() {
 		console.log("Current location is " + video.currentTime);
 	 });
   
-	 // Mute button  
-	 document.querySelector("#mute").addEventListener("click", function() {
-		if (video.muted) {
-		   video.muted = false;
-		   this.innerHTML = "Mute";
-		} 
-		else {
-		   video.muted = true;
-		   this.innerHTML = "Unmute";
-		}
-	 });
+	 // Mute button
+	document.querySelector("#mute").addEventListener("click", function() {
+		video.muted = !video.muted;
+		document.querySelector("#mute").textContent = video.muted ? "Unmute" : "Mute";
+		console.log(video.muted ? "Video muted" : "Video unmuted");
+	});
   
 	 // Volume slider  
 	 document.querySelector("#slider").addEventListener("change", function() {
 		video.volume = this.value / 100;
-		document.getElementById("volume").innerHTML = video.volume * 100 + "%";
-		console.log("Volume is: " + video.volume * 100 + "%");
+		updateVolumeText();
 	 });
   
 	 // Apply old school style to the video
@@ -72,4 +72,3 @@ window.addEventListener("load", function() {
 		video.classList.remove("oldSchool");
 	 });
 });
-
